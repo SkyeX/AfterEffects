@@ -3,7 +3,7 @@ var minVal = effect("Minimum Value")("Slider").value;
 // maximum value of loop
 var maxVal = effect("Maximum Value")("Slider").value;
 // whether we're looping up or down
-var descending = effect("Animate Min to Max")("Checkbox").value;
+var ascending = effect("Animate Min to Max")("Checkbox").value;
 
 // main function
 if (time >= inPoint) {
@@ -20,14 +20,14 @@ if (time >= inPoint) {
 
   while (time > (animStart + loopDur)) {
     animStart += loopDur;
-    descending = !descending;
+    ascending = !ascending;
     if (holdFirst === True) {
       holdDur *= -1;
     }
   }
 
-  linear(time - animStart + holdDur, loopDur - fadeDur, loopDur, descending ? minVal : maxVal, descending ? maxVal : minVal);
-} else if (descending === True) {
+  linear(time - animStart + holdDur, loopDur - fadeDur, loopDur, ascending ? minVal : maxVal, ascending ? maxVal : minVal);
+} else if (ascending === True) {
   minVal;
 } else {
   maxVal;
