@@ -1,13 +1,9 @@
-// duration of comp, in frames
-var compDur = timeToFrames(thisComp.duration);
-
-// minimum value of loop
-var minVal = effect("Minimum Value")("Slider").value;
-// maximum value of loop
-var maxVal = effect("Maximum Value")("Slider").value;
-
 // main function
 if (time > inPoint) {
+// minimum value of loop
+  var minVal = effect("Minimum Value")("Slider").value;
+  // maximum value of loop
+  var maxVal = effect("Maximum Value")("Slider").value;
   // whether we're looping up or down
   var descending = effect("Animate Min to Max")("Checkbox").value;
   // where to start animation (defaults to in point of layer, as time)
