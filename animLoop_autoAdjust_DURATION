@@ -17,33 +17,36 @@ getNearestDivisor(compDur, loopDur, effect("Decrease if Equidistant")("Checkbox"
  * @returns {Number}               Nearest divisor
  */
 function getNearestDivisor(number, initialDiv, roundUp) {
-  // Set roundUp to default to true, if it's not passed in.
-  // Otherwise, use whatever value was given
-  roundUp = typeof roundUp === "undefined" ? true : roundUp;
-  var divisor = initialDiv;
-  var divisorUp = divisor;
-  var a = divisorUp;
-  var divisorDn = divisor;
-  var b = divisorDn;
+    // Set roundUp to default to true, if it's not passed in.
+    // Otherwise, use whatever value was given
+    roundUp = typeof roundUp === "undefined" ? true : roundUp;
+    var divisor = initialDiv;
+    var divisorUp = divisor;
+    var a = divisorUp;
+    var divisorDn = divisor;
+    var b = divisorDn;
 
-  // Get nearest divisor
-  var maxLoops = 10;
-  var count = 0;
-  while (number % divisor > 0) {
-    count++;
-    divisorUp++;
-    divisorDn--;
+    // Get nearest divisor
+    var maxLoops = 10;
+    var count = 0;
+    while (number % divisor > 0) {
+        count++;
+        divisorUp++;
+        divisorDn--;
 
-    if (!roundUp) {
-      a = divisorDn;
-      b = divisorUp;
+        if (!roundUp) {
+            a = divisorDn;
+            b = divisorUp;
+        }
+
+        if (number % a === 0) divisor = a;
+        else if (number % b === 0) divisor = b;
+
+        if (count >= maxLoops) {
+            return 0;
+            break;
+        }
     }
 
-    if (number % a === 0) divisor = a;
-    else if (number % b === 0) divisor = b;
-
-    if (count >= maxLoops) break;
-  }
-
-  return divisor;
+    return divisor;
 }
