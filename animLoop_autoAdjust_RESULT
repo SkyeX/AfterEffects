@@ -1,0 +1,34 @@
+// duration of comp, in frames
+var compDur = timeToFrames(thisComp.duration);
+
+// minimum value of loop
+var minVal = effect("Minimum Value")("Slider").value;
+// maximum value of loop
+var maxVal = effect("Maximum Value")("Slider").value;
+
+// main function
+if (time > inPoint) {
+  // whether we're looping up or down
+  var descending = effect("Animate Min to Max")("Checkbox").value;
+  // where to start animation (defaults to in point of layer, as time)
+  var animStart = inPoint;
+  // loop duration, as time
+  var loopDur = framesToTime(effect("Loop Duration")("Slider")) / 2;
+  // duration of hold, as time
+  var holdDur = framesToTime(effect("Hold Duration")("Slider").value);
+  // duration of fade, as time
+  var fadeDur = loopDur - holdDur;
+
+  while (time > (animStart + loopDur)) {
+    animStart += loopDur;
+    descending = !descending;
+  }
+
+  if (effect("Hold Follows Animation")("Checkbox").value === true) {
+    holdDur *= -1;
+  }
+
+  linear(time - animStart + holdDur, loopDur - fadeDur, loopDur, descending ? minVal : maxVal, descending ? maxVal : minVal);
+} else {
+  maxVal;
+}
