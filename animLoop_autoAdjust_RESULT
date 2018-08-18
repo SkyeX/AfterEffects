@@ -23,12 +23,12 @@ if (time >= inPoint) {
     ascending = !ascending;
   }
 
-  if (holdFirst === True) {
+  if (holdFirst === 1) {
     holdDur *= -1;
   }
 
   linear(time - animStart + holdDur, loopDur - fadeDur, loopDur, ascending ? minVal : maxVal, ascending ? maxVal : minVal);
-} else if (ascending === True) {
+} else if (ascending === 1) {
   minVal;
 } else {
   maxVal;
