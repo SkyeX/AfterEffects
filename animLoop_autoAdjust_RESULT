@@ -2,7 +2,7 @@
 var minVal = effect("Minimum Value")("Slider").value;
 // maximum value of loop
 var maxVal = effect("Maximum Value")("Slider").value;
-// whether we're looping up or down
+// whether animation begins at maximum or minimum value
 var ascending = effect("Animate Min to Max")("Checkbox").value;
 
 // main function
