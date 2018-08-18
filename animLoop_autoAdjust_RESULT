@@ -4,28 +4,28 @@ var minVal = effect("Minimum Value")("Slider").value;
 var maxVal = effect("Maximum Value")("Slider").value;
 // whether animation begins at maximum or minimum value
 var ascending = effect("Animate Min to Max")("Checkbox").value;
+// loop duration, as time
+var loopDur = framesToTime(effect("Loop Duration")("Slider").value) / 2;
 
 // main function
-if (time >= inPoint) {
-  // where to start animation (defaults to in point of layer, as time)
-  var animStart = inPoint;
-  // loop duration, as time
-  var loopDur = framesToTime(effect("Loop Duration")("Slider")) / 2;
-  // duration of hold, as time
-  var holdDur = framesToTime(effect("Hold Duration")("Slider").value);
-  // duration of fade, as time
-  var fadeDur = loopDur - holdDur;
-  // whether hold happens before or after animation
-  var holdFirst = effect("Hold Precedes Animation")("Checkbox").value;
+if (time >= inPoint && loopDur != 0) {
+    // where to start animation (defaults to in point of layer, as time)
+    var animStart = inPoint;
+    // duration of hold, as time
+    var holdDur = framesToTime(effect("Hold Duration")("Slider").value);
+    // duration of fade, as time
+    var fadeDur = loopDur - holdDur;
+    // whether hold happens before or after animation
+    var holdFirst = effect("Hold Precedes Animation")("Checkbox").value;
 
-  while (time > (animStart + loopDur)) {
-    animStart += loopDur;
-    ascending = !ascending;
-  }
+    while (time > (animStart + loopDur)) {
+        animStart += loopDur;
+        ascending = !ascending;
+    }
 
-  linear(time - animStart + (holdFirst ? holdDur -= holdDur : holdDur), loopDur - fadeDur, loopDur, ascending ? minVal : maxVal, ascending ? maxVal : minVal);
+    linear(time - animStart + (holdFirst ? holdDur -= holdDur : holdDur), loopDur - fadeDur, loopDur, ascending ? minVal : maxVal, ascending ? maxVal : minVal);
 } else if (ascending === 1) {
-  minVal;
+    minVal;
 } else {
-  maxVal;
+    maxVal;
 }
