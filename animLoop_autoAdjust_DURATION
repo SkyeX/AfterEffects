@@ -1,0 +1,47 @@
+// duration of comp, in frames
+var compDur = timeToFrames(thisComp.duration);
+// loop duration, in frames
+getNearestDivisor(compDur, effect("Loop Duration")("Slider").value, effect("Decrease if Equidistant")("Checkbox").value);
+
+/**
+ * Gets nearest divisor of a number, from the starting divisor
+ * If equidistant, gets nearest higher.
+ *
+ * Limits to 10 loops for performance.
+ *
+ * @param {Number} number          Number to divide
+ * @param {Number} initialDiv      Initial divisor
+ * @param {Boolean} [roundUp=true] Optional, Whether to round up or down on equidistant values. Defaults to true.
+ * @returns {Number}               Nearest divisor
+ */
+function getNearestDivisor(number, initialDiv, roundUp) {
+  // Set roundUp to default to true, if it's not passed in.
+  // Otherwise, use whatever value was given
+  roundUp = typeof roundUp === "undefined" ? true : roundUp;
+  var divisor = initialDiv;
+  var divisorUp = divisor;
+  var a = divisorUp;
+  var divisorDn = divisor;
+  var b = divisorDn;
+
+  // Get nearest divisor
+  var maxLoops = 10;
+  var count = 0;
+  while (number % divisor > 0) {
+    count++;
+    divisorUp++;
+    divisorDn--;
+
+    if (!roundUp) {
+      a = divisorDn;
+      b = divisorUp;
+    }
+
+    if (number % a === 0) divisor = a;
+    else if (number % b === 0) divisor = b;
+
+    if (count >= maxLoops) break;
+  }
+
+  return divisor;
+}
