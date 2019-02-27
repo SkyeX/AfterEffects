@@ -1,0 +1,44 @@
+//expression by Skye X [http://skye-x.com]
+
+var easeRot = thisComp.layer("__coverFlowControl__").effect("Ease Rotation")("Checkbox"); //option to ease rotation animation
+
+var center = thisComp.layer("__coverFlowControl__").transform.position[0]; //defines x position at which to reach midpoint of transition (currently set to x-pos of control null)
+
+var rotL = thisComp.layer("__coverFlowControl__").effect("Rotation Left Side")("Slider"); //amount to rotate left of center
+
+var rotR = thisComp.layer("__coverFlowControl__").effect("Rotation Right Side")("Slider"); //amount to rotate right of center
+
+var distance = position[0] - center;
+
+var autoRot = thisComp.layer("__coverFlowControl__").effect("Auto Rotation Distance")("Checkbox"); //set distance to begin rotation either manually or automatically (to the width of the Offset distance)
+
+var autoOff = thisComp.layer("__coverFlowControl__").effect("Auto Offset")("Checkbox"); //set distance offset between cards either manually or automatically (to the width of the card)
+
+var minOff = thisComp.layer("__coverFlowControl__").effect("Minimum Offset")("Slider");
+
+var offDist = thisComp.layer("__coverFlowControl__").effect("Offset Distance")("Slider");
+
+var absL = Math.abs(rotL);
+
+var absR = Math.abs(rotR);
+
+var rot = Math.max(absL,absR);
+if (rot > 90) {rot = 90};
+
+if (autoRot == 1) {
+	if (autoOff == 1) {
+		var rotDist = linear(rot, 0, 90, thisLayer.width, minOff);
+	} else {
+		var rotDist = thisComp.layer("__coverFlowControl__").effect("Offset Distance")("Slider");
+	}
+} else {
+	var rotDist = offDist;
+}
+
+if (easeRot == 1) {
+	var angle = ease(center + distance, center + rotDist, center - rotDist, rotL, rotR);
+} else {
+	var angle = linear(center + distance, center + rotDist, center - rotDist, rotL, rotR);
+}
+
+[angle]
