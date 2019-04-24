@@ -1,2 +1,0 @@
-1. Create a null named __coverFlowControl__, apply coverFlowControls.ffx to it.
-2. Add the listed expressions to your cover layers' Position and Y Rotation properties (layer must be 3D to enable Y Rotation) respectively.
