@@ -1,4 +1,5 @@
 This will randomly select a color from a layer's Effects. You must have a layer with only Color Effects for it to work.
 1. Name that layer Colors.
 2. Put this code in the color property of anything you'd like.
-3. Enjoy!
+3. Add the randomColorFromEffectsControls preset to the layer whose color property you are effecting.
+4. Enjoy!
