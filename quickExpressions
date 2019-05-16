@@ -1,7 +1,7 @@
 //returns the current time in seconds starting from 1
 Math.floor(time)+1
 
-//randomly sets a discrete value of either v1 or v2 at the frequency of f times per second
+//randomly sets a discrete value of either v1 or v2 at a frequency of f times per second
 f = 5; //frequency
 v1 = 0; //value 1
 v2 = 100; //value 2
