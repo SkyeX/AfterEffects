@@ -1,3 +1,10 @@
+/***
+ * SXE_animLoop
+ * by Skye X Estes /// https://github.com/skyex ///
+ * 
+ * This set of expressions (DURATION & RESULT) change the duration of a layer's animation to the nearest looping value for the length of the composition
+***/
+
 // minimum value of loop
 var minVal = effect("Minimum Value")("Slider").value;
 // maximum value of loop
