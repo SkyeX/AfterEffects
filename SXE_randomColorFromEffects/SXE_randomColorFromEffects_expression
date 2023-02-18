@@ -2,22 +2,24 @@
  * SXE_randomColorFromEffects
  * by Skye X Estes /// https://github.com/skyex ///
  * 
- * This expression sets a random color value from a set of Color Effects on a control layer (default name is colorControls).
+ * This expression sets a random color value from a set of Color Effects on a control layer (default name is Colors).
 ***/
 
 // Select layer that contains color effects
-var lyr = thisComp.layer("colorControls");
+var colorLayer = thisComp.layer("Colors");
 
-// Change the random seed to change the color randomization order
-seedRandom(lyr.effect("Random Seed")("Slider"));
+// Set number of colors to choose from
+// Increase without adding a color to increase frequency of first color
+var numColors = colorLayer.effect("Number of Colors")("Slider");
 
-// The number of colors to choose from. Increase without adding a color to increase the frequency of the first color
-var numColors = lyr.effect("Number of Colors")("Slider");
+// Change random seed to change color randomization
+seedRandom(colorLayer.effect("Random Seed")("Slider"));
 
-// Chooses a color from the effects on the layer. Out of range returns the first color
+// Choose a color from effects on control layer
+// Out of range returns first color
 var selection = Math.round(random(1, numColors));
-if (selection > lyr(5).numProperties) {
+if (selection > colorLayer(5).numProperties) {
 	selection = 1;
 }
 
-lyr.effect(selection)("Color")
+colorLayer.effect(selection)("Color")
