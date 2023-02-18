@@ -1,3 +1,10 @@
+/***
+ * SXE_quickExpressions
+ * by Skye X Estes /// https://github.com/skyex ///
+ * 
+ * A collection of small expressions that I regularly find useful
+***/
+
 //returns the current time in seconds starting from 1
 Math.floor(time)+1
 
