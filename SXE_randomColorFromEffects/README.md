@@ -1,7 +1,7 @@
 This will randomly select a color from a layer's Color Effects.
 
-1. Create a layer named colorCotrols with your Color Effects on it. The first color will be your default.
-2. Add the SXE_randomColorFromEffects_controls preset to the layer whose color property you are effecting.
+1. Create a layer named Colors with your Color Effects on it. The first color will be your default.
+2. Add the SXE_randomColorFromEffects_controls preset to a different layer.
 3. Put the expression in the color property of anything you'd like (in the same composition).
 4. Enjoy!
 
